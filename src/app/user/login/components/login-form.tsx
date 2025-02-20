@@ -1,12 +1,16 @@
 "use client";
-import useUserLogin from "@/app/hooks/useUserLogin";
+import useUserAccess from "@/hooks/useUserAccess";
 import LabeledInput from "@/components/labeled-input";
 import { FormEvent, useRef } from "react";
 
 export default function LoginForm() {
   const userNameRef = useRef<HTMLInputElement>(null);
   const userKeyRef = useRef<HTMLInputElement>(null);
-  const { mutateAsync: triggerLogin, error, isSuccess } = useUserLogin();
+  const {
+    mutateAsync: triggerLogin,
+    error,
+    isSuccess,
+  } = useUserAccess({ isRegistering: false });
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
