@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { endPointURL } from "../utils/endpoint";
 import axios from "axios";
 import { ServerResponseObj } from "@/utils/types";
-import storeUserLogin from "@/utils/store-user-login";
+import storeUserLogin from "@/utils/user-cookies/store-user-login";
 import { redirect } from "next/navigation";
 
 interface useUserAccessParams {

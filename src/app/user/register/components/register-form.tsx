@@ -1,0 +1,44 @@
+"use client";
+import useUserAccess from "@/hooks/useUserAccess";
+import LabeledInput from "@/components/labeled-input";
+import { FormEvent, useRef } from "react";
+
+export default function RegisterForm() {
+  const userNameRef = useRef<HTMLInputElement>(null);
+  const userKeyRef = useRef<HTMLInputElement>(null);
+  const {
+    mutateAsync: triggerRegister,
+    error,
+    isSuccess,
+  } = useUserAccess({ isRegistering: true });
+
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const userName = userNameRef?.current?.value || "";
+    const userKey = userKeyRef?.current?.value || "";
+
+    if (userName !== "" && userKey !== "") {
+      triggerRegister({
+        userName,
+        userKey,
+      });
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h1>Register</h1>
+      <LabeledInput
+        inputType="text"
+        labelText="Username"
+        inputRef={userNameRef}
+      />
+      <LabeledInput
+        inputType="password"
+        labelText="New Password"
+        inputRef={userKeyRef}
+      />
+      <input type="submit" value="Sign Up" />
+    </form>
+  );
+}

@@ -1,9 +1,12 @@
 "use client";
 import useUserAccess from "@/hooks/useUserAccess";
 import LabeledInput from "@/components/labeled-input";
-import { FormEvent, useRef } from "react";
+import { FormEvent, useContext, useEffect, useRef } from "react";
+import { redirect } from "next/navigation";
+import { IsUserLoggedIn } from "@/utils/all-context";
 
 export default function LoginForm() {
+  const isUserLoggedIn = useContext(IsUserLoggedIn);
   const userNameRef = useRef<HTMLInputElement>(null);
   const userKeyRef = useRef<HTMLInputElement>(null);
   const {
@@ -25,20 +28,30 @@ export default function LoginForm() {
     }
   }
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <h1>Login</h1>
-      <LabeledInput
-        inputType="text"
-        labelText="Username"
-        inputRef={userNameRef}
-      />
-      <LabeledInput
-        inputType="password"
-        labelText="Password"
-        inputRef={userKeyRef}
-      />
-      <input type="submit" value="Sign In" />
-    </form>
-  );
+  if (isUserLoggedIn) {
+    redirect("/");
+  }
+
+  const RenderForm = () => {
+    if (!isUserLoggedIn) {
+      return (
+        <form onSubmit={handleSubmit}>
+          <h1>Login</h1>
+          <LabeledInput
+            inputType="text"
+            labelText="Username"
+            inputRef={userNameRef}
+          />
+          <LabeledInput
+            inputType="password"
+            labelText="Password"
+            inputRef={userKeyRef}
+          />
+          <input type="submit" value="Sign In" />
+        </form>
+      );
+    }
+  };
+
+  return <RenderForm />;
 }
