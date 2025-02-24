@@ -5,12 +5,14 @@ interface LabeledInputProps {
   inputType: string;
   labelText: string;
   inputRef: Ref<HTMLInputElement>;
+  associatedVariable?: string;
 }
 
 export default function LabeledInput({
   inputType,
   labelText,
   inputRef,
+  associatedVariable
 }: LabeledInputProps) {
   return (
     <>
@@ -20,6 +22,7 @@ export default function LabeledInput({
         id={`${labelText}-input`}
         type={inputType}
         placeholder={`Enter ${labelText.toLowerCase()}...`}
+        name={associatedVariable ? associatedVariable : ''}
       />
     </>
   );

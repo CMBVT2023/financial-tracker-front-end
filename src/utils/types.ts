@@ -6,3 +6,11 @@ export type ServerResponseObj = {
     jwt?: string;
   };
 };
+
+export type FinancialEntryInfo = {
+  itemName: string;
+  itemCost: number;
+  purchasedFrom: string;
+  itemQuantity: number | null;
+  itemManufacturer: string | null;
+}

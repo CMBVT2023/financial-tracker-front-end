@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { endPointURL, getQueryKey, postMutationKey } from "@/utils/constant-vars";
 import axios from "axios";
-import { ServerResponseObj } from "@/utils/types";
+import type { ServerResponseObj, FinancialEntryInfo } from "@/utils/types";
 
 export default function useEntryAddition() {
     const mainQueryClient = useQueryClient();
@@ -13,13 +13,19 @@ export default function useEntryAddition() {
         onSuccess: invalidateQueries
     })
 
-    async function addFinancialEntry() {
+    async function addFinancialEntry({itemName, itemCost, purchasedFrom, itemQuantity, itemManufacturer}: FinancialEntryInfo) {
+        const newFinancialEntry = {
+            itemName,
+            itemCost,
+            purchasedFrom,
+            itemQuantity,
+            itemManufacturer
+        }
+
         const response = await axios({
             method: "post",
             url: `${endPointURL}`,
-            data: {
-                
-            }
+            data: newFinancialEntry
         })
         return response.data;
     }
