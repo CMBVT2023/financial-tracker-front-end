@@ -1,7 +1,7 @@
 "use client";
-import useUserAccess from "@/hooks/useUserAccess";
+import useUserAccess from "@/hooks/queries/useUserAccess";
 import LabeledInput from "@/components/labeled-input";
-import { FormEvent, useContext, useEffect, useRef } from "react";
+import { FormEvent, useContext, useRef } from "react";
 import { redirect } from "next/navigation";
 import { IsUserLoggedIn } from "@/utils/all-context";
 
