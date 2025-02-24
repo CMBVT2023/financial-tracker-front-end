@@ -8,7 +8,7 @@ export default async function getUserLogin() {
 
     const userJsonInfo = storedCookies.get("user");
 
-    return userJsonInfo;
+    return userJsonInfo?.value;
   } catch (error) {
     console.log(error);
     return null;
