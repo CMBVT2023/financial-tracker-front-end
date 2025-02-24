@@ -24,7 +24,7 @@ export default function useEntryAddition() {
 
         const response = await axios({
             method: "post",
-            url: `${endPointURL}`,
+            url: `${endPointURL}/entries/add-financial-entry`,
             data: newFinancialEntry
         })
         return response.data;

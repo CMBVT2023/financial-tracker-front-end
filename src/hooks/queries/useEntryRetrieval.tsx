@@ -13,7 +13,7 @@ export default function useEntryEdit() {
     async function getFinancialEntry() {
         const response = await axios({
             method: "get",
-            url: `${endPointURL}`
+            url: `${endPointURL}/entries/all-financial-entries`
         })
         return response.data;
     }

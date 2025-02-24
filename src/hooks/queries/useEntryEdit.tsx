@@ -12,18 +12,19 @@ export default function useEntryEdit() {
         onSuccess: invalidateQueries
     })
 
-    async function editFinancialEntry({itemName, itemCost, purchasedFrom, itemQuantity, itemManufacturer}: FinancialEntryInfo) {
+    async function editFinancialEntry({itemName, itemCost, purchasedFrom, itemQuantity, itemManufacturer, entryID}: FinancialEntryInfo) {
         const editedFinancialEntry = {
             newItemName: itemName,
             newItemCost: itemCost,
             newPurchasedFrom: purchasedFrom,
             newItemQuantity: itemQuantity,
-            newItemManufacturer: itemManufacturer
+            newItemManufacturer: itemManufacturer,
+            entryID
         }
 
         const response = await axios({
             method: "put",
-            url: `${endPointURL}`,
+            url: `${endPointURL}/entries/edit-financial-entry`,
             data: editedFinancialEntry
         })
         return response.data;

@@ -13,4 +13,5 @@ export type FinancialEntryInfo = {
   purchasedFrom: string;
   itemQuantity: number | null;
   itemManufacturer: string | null;
+  entryID?: number;
 }

@@ -12,12 +12,12 @@ export default function useEntryDeletion() {
         onSuccess: invalidateQueries
     })
 
-    async function deleteFinancialEntry() {
+    async function deleteFinancialEntry(entryID: number) {
         const response = await axios({
             method: "delete",
-            url: `${endPointURL}`,
+            url: `${endPointURL}/entries/remove-financial-entry`,
             data: {
-
+                entryID
             }
         })
         return response.data;
