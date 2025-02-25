@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { endPointURL, getQueryKey, postMutationKey } from "@/utils/constant-vars";
 import axios from "axios";
 import type { ServerResponseObj, FinancialEntryInfo } from "@/utils/types";
+import getUserLogin from "@/utils/user-cookies/get-user-login";
 
 export default function useEntryAddition() {
     const mainQueryClient = useQueryClient();
@@ -21,9 +22,15 @@ export default function useEntryAddition() {
             itemQuantity,
             itemManufacturer
         }
+        const userSession = await getUserLogin();
+        if (userSession === null || userSession === undefined) return null;
+        const headers = {
+            authorization: userSession,
+        };
 
         const response = await axios({
             method: "post",
+            headers,
             url: `${endPointURL}/entries/add-financial-entry`,
             data: newFinancialEntry
         })
