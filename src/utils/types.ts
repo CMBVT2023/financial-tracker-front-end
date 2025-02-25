@@ -4,7 +4,14 @@ export type ServerResponseObj = {
   // Putting any for now since I am not sure what data will be sent yet
   transferData: {
     jwt?: string;
+    entriesArray?: FinancialEntryDataBaseInfo[];
   };
+};
+
+export type ReactQueryData = {
+  data: ServerResponseObj;
+  isLoading: boolean;
+  error: Error | null;
 };
 
 export type FinancialEntryInfo = {
@@ -14,4 +21,15 @@ export type FinancialEntryInfo = {
   itemQuantity: number | null;
   itemManufacturer: string | null;
   entryID?: number;
-}
+};
+
+export type FinancialEntryDataBaseInfo = {
+  entry_id: number;
+  item_name: string;
+  item_cost: number;
+  purchased_from: string;
+  user_id: number;
+  item_quantity: number;
+  manufacturer: string;
+  delete_flag: null | number;
+};
