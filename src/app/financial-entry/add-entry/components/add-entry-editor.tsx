@@ -1,5 +1,5 @@
 "use client";
-import EntryForm from "@/components/entry-form";
+import AddEntryForm from "@/app/financial-entry/add-entry/components/add-entry-form";
 import useEntryAddition from "@/hooks/queries/useEntryAddition";
 import type { FinancialEntryInfo } from "@/utils/types";
 import { useRef } from "react";
@@ -73,14 +73,13 @@ export default function AddEntryEditor() {
   }
 
   return (
-    <EntryForm
+    <AddEntryForm
       itemName={itemNameRef}
       itemCost={itemCostRef}
       purchasedFrom={purchasedFromRef}
       itemQuantity={itemQuantityRef}
       itemManufacturer={itemManufacturerRef}
       handleFormSubmission={validateEntry}
-      isNewEntry={true}
     />
   );
 }

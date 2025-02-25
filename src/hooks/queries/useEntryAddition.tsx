@@ -4,6 +4,7 @@ import { endPointURL, getQueryKey, postMutationKey } from "@/utils/constant-vars
 import axios from "axios";
 import type { ServerResponseObj, FinancialEntryInfo } from "@/utils/types";
 import getUserLogin from "@/utils/user-cookies/get-user-login";
+import { redirect } from "next/navigation";
 
 export default function useEntryAddition() {
     const mainQueryClient = useQueryClient();
@@ -39,6 +40,7 @@ export default function useEntryAddition() {
 
     async function invalidateQueries() {
         mainQueryClient.invalidateQueries({queryKey: [getQueryKey]});
+        redirect('/')
     }
 
     return {mutateAsync, isSuccess, error};

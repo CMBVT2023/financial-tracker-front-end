@@ -1,90 +1,67 @@
-"use client"
-import EntryForm from "@/components/entry-form";
+"use client";
 import useEntryEdit from "@/hooks/queries/useEntryEdit";
-import type { FinancialEntryInfo } from "@/utils/types";
-import { useEffect, useRef } from "react";
-import type {FormEvent} from "react";
+import type {
+  FinancialEntryDataBaseInfo,
+  FinancialEntryInfo,
+} from "@/utils/types";
+import React, { useEffect, useState } from "react";
+import type { FormEvent } from "react";
+import EditEntryForm from "./edt-entry-form";
 
-export default function EditEntryEditor() {
-    const itemNameRef = useRef<HTMLInputElement | null>(null);
-    const itemCostRef = useRef<HTMLInputElement | null>(null);
-    const purchasedFromRef = useRef<HTMLInputElement | null>(null);
-    const itemQuantityRef = useRef<HTMLInputElement | null>(null);
-    const itemManufacturerRef = useRef<HTMLInputElement | null>(null);
+interface EditEntryEditorProps {
+  entryValues: FinancialEntryDataBaseInfo;
+}
 
-    const { mutateAsync: editEntry, error, isSuccess } = useEntryEdit();
+export default function EditEntryEditor({ entryValues }: EditEntryEditorProps) {
+  const { item_name, item_cost, item_quantity, manufacturer, purchased_from, entry_id } =
+    entryValues;
+  const [itemName, setItemName] = useState<string>(item_name);
+  const [itemCost, setItemCost] = useState<string>(item_cost.toString());
+  const [purchasedFrom, setPurchasedFrom] = useState<string>(purchased_from);
+  const [itemQuantity, setItemQuantity] = useState<string>(item_quantity.toString());
+  const [itemManufacturer, setItemManufacturer] =
+    useState<string>(manufacturer);
 
-    useEffect(() => {
-        
-    }, [])
+  const { mutateAsync: editEntry, error, isSuccess } = useEntryEdit();
 
-    function gatherRefValues(): FinancialEntryInfo | null {
-        const entryObjectInfo: Record<string, unknown> & FinancialEntryInfo = {
-          itemName: "",
-          itemCost: 0,
-          purchasedFrom: "",
-          itemQuantity: null,
-          itemManufacturer: null,
-        };
-    
-        // Checks that all refs have an associated html input else return a null value and false;
-        for (const ref of [
-          itemNameRef,
-          itemCostRef,
-          purchasedFromRef,
-          itemQuantityRef,
-          itemManufacturerRef,
-        ]) {
-          if (ref["current"] === undefined || ref["current"] === null) return null;
-        }
-    
-        // Constructs the entryInfoObject starting with the required values.
-        for (const ref of [itemNameRef, itemCostRef, purchasedFromRef]) {
-          if (ref.current?.name !== undefined && ref.current?.value !== undefined) {
-            entryObjectInfo[ref.current?.name] = ref.current?.value;
-          } else {
-            return null;
-          }
-        }
-    
-        // Finishes constructing the entryInfoObject with the last optional values,
-        //! If these values are empty then the placeholder null value is kept instead.
-        for (const ref of [itemQuantityRef, itemManufacturerRef]) {
-          if (ref.current?.name !== undefined && ref.current?.value) {
-            entryObjectInfo[ref.current?.name] = ref.current?.value;
-          }
-        }
-    
-        // Finally, all values within the new object are validated.
-        for (const value of Object.values(entryObjectInfo)) {
-          if (value === 0 || value === "") {
-            return null;
-          }
-        }
-    
-        // If all criteria are met then a true value is returned.
-        return entryObjectInfo;
-      }
-    
-      function validateEntry(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-    
-        const entryInfo = gatherRefValues();
-    
-        if (entryInfo !== null) {
-            editEntry(entryInfo);
-        }
-      }
+  function checkInputs() {
+    let isInputValid = true;
+    for (const value of [itemName, itemCost, purchasedFrom]) {
+      if (value === "") isInputValid = false;
+    }
+    return isInputValid;
+  }
 
-    return (
-        <EntryForm
-              itemName={itemNameRef}
-              itemCost={itemCostRef}
-              purchasedFrom={purchasedFromRef}
-              itemQuantity={itemQuantityRef}
-              itemManufacturer={itemManufacturerRef}
-              handleFormSubmission={validateEntry}
-              isNewEntry={false}
-            />
-    )
+  function validateEntry(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const areMainInputsValid = checkInputs();
+    if (!areMainInputsValid) return;
+
+    editEntry({
+      entryID: entry_id,
+      itemName,
+      itemCost: parseInt(itemCost),
+      purchasedFrom,
+      itemQuantity: itemQuantity === "" ? 0 : parseInt(itemQuantity),
+      itemManufacturer: itemManufacturer
+    })
+  }
+
+  return (
+    <EditEntryForm
+      itemName={{ stateValue: itemName, alterState: setItemName }}
+      itemCost={{ stateValue: itemCost, alterState: setItemCost }}
+      purchasedFrom={{
+        stateValue: purchasedFrom,
+        alterState: setPurchasedFrom,
+      }}
+      itemQuantity={{ stateValue: itemQuantity, alterState: setItemQuantity }}
+      itemManufacturer={{
+        stateValue: itemManufacturer,
+        alterState: setItemManufacturer,
+      }}
+      handleFormSubmission={validateEntry}
+    />
+  );
 }

@@ -1,8 +1,15 @@
+import React from "react";
 import EditEntryEditor from "./components/edit-entry-editor";
+import type { FinancialEntryDataBaseInfo } from "@/utils/types";
 
-export default function EditEntry() {
+interface EditEntryProps {
+    searchParams: FinancialEntryDataBaseInfo;
+}
+
+export default async function EditEntry({searchParams}: EditEntryProps) {
+    const pageParameters = await searchParams;
 
     return (
-        <EditEntryEditor />
+        <EditEntryEditor entryValues={pageParameters} />
     )
 }

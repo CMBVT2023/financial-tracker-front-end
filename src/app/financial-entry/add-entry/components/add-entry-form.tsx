@@ -1,6 +1,6 @@
 import type {FormEvent} from "react"
 import { RefObject } from "react";
-import LabeledInput from "./labeled-input";
+import LabeledInput from "../../../../components/labeled-input";
 
 interface EntryFormProps {
   itemName: RefObject<HTMLInputElement | null>;
@@ -9,17 +9,15 @@ interface EntryFormProps {
   itemQuantity: RefObject<HTMLInputElement | null>;
   itemManufacturer: RefObject<HTMLInputElement | null>;
   handleFormSubmission: (e: FormEvent<HTMLFormElement>) => void;
-  isNewEntry: boolean;
 }
 
-export default function EntryForm({
+export default function AddEntryForm({
   itemName,
   itemCost,
   purchasedFrom,
   itemQuantity,
   itemManufacturer,
-  handleFormSubmission,
-  isNewEntry,
+  handleFormSubmission
 }: EntryFormProps) {
   return (
     <form onSubmit={handleFormSubmission}>
@@ -53,7 +51,7 @@ export default function EntryForm({
         inputRef={itemManufacturer}
         associatedVariable="itemManufacturer"
       />
-      <input type="submit" value={`${isNewEntry ? "Add" : "Edit"} Entry`} />
+      <input type="submit" value={`AddEntry`} />
     </form>
   );
 }

@@ -4,6 +4,7 @@ import { endPointURL, getQueryKey } from "@/utils/constant-vars";
 import axios from "axios";
 import type { FinancialEntryInfo, ServerResponseObj } from "@/utils/types";
 import getUserLogin from "@/utils/user-cookies/get-user-login";
+import { redirect } from "next/navigation";
 
 export default function useEntryEdit() {
   const mainQueryClient = useQueryClient();
@@ -46,6 +47,7 @@ export default function useEntryEdit() {
 
   async function invalidateQueries() {
     mainQueryClient.invalidateQueries({ queryKey: [getQueryKey] });
+    redirect('/')
   }
 
   return { mutateAsync, isSuccess, error };
