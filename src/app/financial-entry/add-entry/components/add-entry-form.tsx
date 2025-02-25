@@ -1,4 +1,4 @@
-import type {FormEvent} from "react"
+import type { FormEvent } from "react";
 import { RefObject } from "react";
 import LabeledInput from "../../../../components/labeled-input";
 
@@ -17,7 +17,7 @@ export default function AddEntryForm({
   purchasedFrom,
   itemQuantity,
   itemManufacturer,
-  handleFormSubmission
+  handleFormSubmission,
 }: EntryFormProps) {
   return (
     <form onSubmit={handleFormSubmission}>

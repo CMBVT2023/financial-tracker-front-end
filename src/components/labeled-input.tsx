@@ -12,7 +12,7 @@ export default function LabeledInput({
   inputType,
   labelText,
   inputRef,
-  associatedVariable
+  associatedVariable,
 }: LabeledInputProps) {
   return (
     <>
@@ -22,7 +22,7 @@ export default function LabeledInput({
         id={`${labelText}-input`}
         type={inputType}
         placeholder={`Enter ${labelText.toLowerCase()}...`}
-        name={associatedVariable ? associatedVariable : ''}
+        name={associatedVariable ? associatedVariable : ""}
       />
     </>
   );

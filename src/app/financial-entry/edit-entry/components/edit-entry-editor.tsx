@@ -13,12 +13,20 @@ interface EditEntryEditorProps {
 }
 
 export default function EditEntryEditor({ entryValues }: EditEntryEditorProps) {
-  const { item_name, item_cost, item_quantity, manufacturer, purchased_from, entry_id } =
-    entryValues;
+  const {
+    item_name,
+    item_cost,
+    item_quantity,
+    manufacturer,
+    purchased_from,
+    entry_id,
+  } = entryValues;
   const [itemName, setItemName] = useState<string>(item_name);
   const [itemCost, setItemCost] = useState<string>(item_cost.toString());
   const [purchasedFrom, setPurchasedFrom] = useState<string>(purchased_from);
-  const [itemQuantity, setItemQuantity] = useState<string>(item_quantity.toString());
+  const [itemQuantity, setItemQuantity] = useState<string>(
+    item_quantity.toString()
+  );
   const [itemManufacturer, setItemManufacturer] =
     useState<string>(manufacturer);
 
@@ -44,8 +52,8 @@ export default function EditEntryEditor({ entryValues }: EditEntryEditorProps) {
       itemCost: parseInt(itemCost),
       purchasedFrom,
       itemQuantity: itemQuantity === "" ? 0 : parseInt(itemQuantity),
-      itemManufacturer: itemManufacturer
-    })
+      itemManufacturer: itemManufacturer,
+    });
   }
 
   return (

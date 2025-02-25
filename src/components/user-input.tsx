@@ -12,8 +12,8 @@ interface UserInputProps {
 export default function UserInput({
   inputType,
   labelText,
-    alterInput,
-    currentInputValue
+  alterInput,
+  currentInputValue,
 }: UserInputProps) {
   return (
     <>

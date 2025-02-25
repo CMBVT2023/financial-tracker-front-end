@@ -13,10 +13,14 @@ export default function Entry({ entryInfoObj }: EntryProps) {
       <p>{entryInfoObj.purchased_from}</p>
       <p>{entryInfoObj.item_quantity}</p>
       <p>{entryInfoObj.manufacturer}</p>
-      <Link href={{
-        pathname: '/financial-entry/edit-entry',
-        query: {...entryInfoObj}
-      }}>Edit</Link>
+      <Link
+        href={{
+          pathname: "/financial-entry/edit-entry",
+          query: { ...entryInfoObj },
+        }}
+      >
+        Edit
+      </Link>
       {/* <Link>Remove</Link> */}
     </div>
   );
