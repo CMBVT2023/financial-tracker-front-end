@@ -3,9 +3,10 @@ import Link from "next/link";
 
 interface EntryProps {
   entryInfoObj: FinancialEntryDataBaseInfo;
+  deleteEntry: (entryID: number) => void;
 }
 
-export default function Entry({ entryInfoObj }: EntryProps) {
+export default function Entry({ entryInfoObj, deleteEntry }: EntryProps) {
   return (
     <div key={entryInfoObj.entry_id}>
       <p>{entryInfoObj.item_name}</p>
@@ -21,7 +22,7 @@ export default function Entry({ entryInfoObj }: EntryProps) {
       >
         Edit
       </Link>
-      {/* <Link>Remove</Link> */}
+      <button onClick={() => deleteEntry(entryInfoObj.entry_id)}>Remove</button>
     </div>
   );
 }

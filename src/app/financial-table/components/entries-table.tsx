@@ -3,17 +3,24 @@
 import useEntryRetrieval from "@/hooks/queries/useEntryRetrieval";
 import type { FinancialEntryDataBaseInfo, ReactQueryData } from "@/utils/types";
 import Entry from "./entry";
+import useEntryDeletion from "@/hooks/queries/useEntryDeletion";
 
 export default function EntriesTable() {
-  const { data, isLoading, error }: ReactQueryData = useEntryRetrieval();
+  const { data: retrievalData, isLoading: isRetrieving, error: retrievalError }: ReactQueryData = useEntryRetrieval();
+  const { mutateAsync: removeEntry, isSuccess: isDeletionSuccessful, error: deletionError} = useEntryDeletion();
 
-  if (isLoading) {
+  if (isRetrieving) {
     return <>Loading...</>;
   }
 
-  const financialEntries = data?.transferData?.entriesArray?.map(
+  function deleteEntry(entryID: number) {
+    const confirmation = confirm('Warning, this will permanently remove the financial entry. Do you wish to continue?')
+    if (confirmation) removeEntry(entryID);
+  }
+
+  const financialEntries = retrievalData?.transferData?.entriesArray?.map(
     (entryInfo: FinancialEntryDataBaseInfo) => {
-      return <Entry key={entryInfo.entry_id} entryInfoObj={entryInfo} />;
+      return <Entry key={entryInfo.entry_id} entryInfoObj={entryInfo} deleteEntry={deleteEntry} />;
     }
   );
 
