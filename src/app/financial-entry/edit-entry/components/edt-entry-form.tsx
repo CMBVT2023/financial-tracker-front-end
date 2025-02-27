@@ -26,7 +26,11 @@ export default function EditEntryForm({
   handleFormSubmission,
 }: EditEntryFormProps) {
   return (
-    <form onSubmit={handleFormSubmission}>
+    <form
+      onSubmit={handleFormSubmission}
+      className="w-full sm:w-1/2 xl:w-1/3 h-1/2 md:h-1/3 flex flex-col justify-around bg-blue-800 text-white p-2"
+    >
+      <h1 className="text-4xl self-center">Edit Entry</h1>
       <UserInput
         inputType="text"
         labelText={"Item Name"}
@@ -63,7 +67,11 @@ export default function EditEntryForm({
         alterInput={itemManufacturer.alterState}
         currentInputValue={itemManufacturer.stateValue}
       />
-      <input type="submit" value={`Edit Entry`} />
+      <input
+        type="submit"
+        value={`Edit Entry`}
+        className="outline-white outline w-1/2 self-center cursor-pointer"
+      />
     </form>
   );
 }

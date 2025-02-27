@@ -9,5 +9,9 @@ interface EditEntryProps {
 export default async function EditEntry({ searchParams }: EditEntryProps) {
   const pageParameters = await searchParams;
 
-  return <EditEntryEditor entryValues={pageParameters} />;
+  return (
+    <div className="flex justify-center items-center w-full h-full">
+      <EditEntryEditor entryValues={pageParameters} />
+    </div>
+  );
 }

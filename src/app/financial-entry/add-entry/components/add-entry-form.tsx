@@ -22,7 +22,11 @@ export default function AddEntryForm({
   handleFormSubmission,
 }: EntryFormProps) {
   return (
-    <form onSubmit={handleFormSubmission}>
+    <form
+      onSubmit={handleFormSubmission}
+      className="w-full sm:w-1/2 xl:w-1/3 h-1/2 md:h-1/3 flex flex-col justify-around bg-blue-800 text-white p-2"
+    >
+      <h1 className="text-4xl self-center">New Entry</h1>
       <LabeledInput
         inputType="text"
         labelText={"Item Name"}
@@ -59,7 +63,11 @@ export default function AddEntryForm({
         inputRef={itemManufacturer}
         associatedVariable="itemManufacturer"
       />
-      <input type="submit" value={`AddEntry`} />
+      <input
+        type="submit"
+        value={`Add Entry`}
+        className="outline-white outline w-1/2 self-center cursor-pointer"
+      />
     </form>
   );
 }
