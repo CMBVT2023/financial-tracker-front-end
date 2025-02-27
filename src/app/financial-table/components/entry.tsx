@@ -8,7 +8,7 @@ interface EntryProps {
 
 export default function Entry({ entryInfoObj, deleteEntry }: EntryProps) {
   return (
-    <div key={entryInfoObj.entry_id}>
+    <div key={entryInfoObj.entry_id} className="grid-cols-5">
       <p>{entryInfoObj.item_name}</p>
       <p>{entryInfoObj.item_cost}</p>
       <p>{entryInfoObj.purchased_from}</p>

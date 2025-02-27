@@ -15,15 +15,18 @@ export default function LabeledInput({
   associatedVariable,
 }: LabeledInputProps) {
   return (
-    <>
-      <label htmlFor={`${labelText}-input`}>{labelText}:</label>
+    <div className="flex justify-between w-full">
+      <label htmlFor={`${labelText}-input`} className="w-1/4">
+        {labelText}:
+      </label>
       <input
+        className="w-3/4"
         ref={inputRef}
         id={`${labelText}-input`}
         type={inputType}
         placeholder={`Enter ${labelText.toLowerCase()}...`}
         name={associatedVariable ? associatedVariable : ""}
       />
-    </>
+    </div>
   );
 }

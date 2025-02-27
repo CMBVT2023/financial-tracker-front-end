@@ -1,5 +1,9 @@
 import RegisterForm from "./components/register-form";
 
 export default function Register() {
-  return <RegisterForm />;
+  return (
+    <div className="flex justify-center items-center w-full h-full">
+      <RegisterForm />
+    </div>
+  );
 }

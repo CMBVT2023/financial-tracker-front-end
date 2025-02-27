@@ -35,8 +35,11 @@ export default function LoginForm() {
   const RenderForm = () => {
     if (!isUserLoggedIn) {
       return (
-        <form onSubmit={handleSubmit}>
-          <h1>Login</h1>
+        <form
+          onSubmit={handleSubmit}
+          className="w-full sm:w-1/2 h-1/2 md:h-1/3 flex flex-col justify-around bg-blue-800 text-white p-2"
+        >
+          <h1 className="text-4xl">Login</h1>
           <LabeledInput
             inputType="text"
             labelText="Username"
@@ -47,7 +50,11 @@ export default function LoginForm() {
             labelText="Password"
             inputRef={userKeyRef}
           />
-          <input type="submit" value="Sign In" />
+          <input
+            type="submit"
+            value="Sign In"
+            className="outline-white outline w-1/2 self-center cursor-pointer"
+          />
         </form>
       );
     }

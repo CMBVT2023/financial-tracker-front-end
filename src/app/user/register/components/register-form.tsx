@@ -1,5 +1,5 @@
 "use client";
-import useUserAccess from "@/hooks/useUserAccess";
+import useUserAccess from "@/hooks/queries/useUserAccess";
 import LabeledInput from "@/components/labeled-input";
 import { FormEvent, useRef } from "react";
 
@@ -26,8 +26,11 @@ export default function RegisterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Register</h1>
+    <form
+      onSubmit={handleSubmit}
+      className="w-full sm:w-1/2 h-1/2 md:h-1/3 flex flex-col justify-around bg-blue-800 text-white p-2"
+    >
+      <h1 className="text-4xl">Register</h1>
       <LabeledInput
         inputType="text"
         labelText="Username"
@@ -38,7 +41,11 @@ export default function RegisterForm() {
         labelText="New Password"
         inputRef={userKeyRef}
       />
-      <input type="submit" value="Sign Up" />
+      <input
+        type="submit"
+        value="Sign Up"
+        className="outline-white outline w-1/2 self-center cursor-pointer"
+      />
     </form>
   );
 }
