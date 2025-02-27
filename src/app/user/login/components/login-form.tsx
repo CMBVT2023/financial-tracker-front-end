@@ -2,11 +2,8 @@
 import useUserAccess from "@/hooks/queries/useUserAccess";
 import LabeledInput from "@/components/labeled-input";
 import { FormEvent, useContext, useRef } from "react";
-import { redirect } from "next/navigation";
-import { IsUserLoggedIn } from "@/utils/all-context";
 
 export default function LoginForm() {
-  const isUserLoggedIn = useContext(IsUserLoggedIn);
   const userNameRef = useRef<HTMLInputElement>(null);
   const userKeyRef = useRef<HTMLInputElement>(null);
   const {
@@ -28,16 +25,11 @@ export default function LoginForm() {
     }
   }
 
-  if (isUserLoggedIn) {
-    redirect("/");
-  }
-
   const RenderForm = () => {
-    if (!isUserLoggedIn) {
       return (
         <form
           onSubmit={handleSubmit}
-          className="w-full sm:w-1/2 h-1/2 md:h-1/3 flex flex-col justify-around bg-blue-800 text-white p-2"
+          className="w-full sm:w-1/2 xl:w-1/3 h-1/2 md:h-1/3 flex flex-col justify-around bg-blue-800 text-white p-2"
         >
           <h1 className="text-4xl">Login</h1>
           <LabeledInput
@@ -57,7 +49,6 @@ export default function LoginForm() {
           />
         </form>
       );
-    }
   };
 
   return <RenderForm />;

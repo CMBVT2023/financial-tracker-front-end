@@ -28,12 +28,12 @@ export default function RegisterForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full sm:w-1/2 h-1/2 md:h-1/3 flex flex-col justify-around bg-blue-800 text-white p-2"
+      className="w-full sm:w-1/2 xl:w-1/3 h-1/2 md:h-1/3 flex flex-col justify-around bg-blue-800 text-white p-2"
     >
       <h1 className="text-4xl">Register</h1>
       <LabeledInput
         inputType="text"
-        labelText="Username"
+        labelText="New Username"
         inputRef={userNameRef}
       />
       <LabeledInput

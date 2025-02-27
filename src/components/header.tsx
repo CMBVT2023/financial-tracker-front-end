@@ -1,15 +1,18 @@
+import deleteUserLogin from "@/utils/user-cookies/delete-user-login";
 import { redirect } from "next/navigation";
 
 interface HeaderProps {
   showLoginButton: boolean;
   showRegisterButton: boolean;
+  isUserLoggedIn: boolean
   children: React.ReactNode;
 }
 
 export default function Header({
   showLoginButton,
   showRegisterButton,
-  children,
+  isUserLoggedIn,
+  children
 }: HeaderProps) {
   function redirectLogin() {
     redirect("/user/login");
@@ -19,16 +22,32 @@ export default function Header({
     redirect("/user/register");
   }
 
+  async function signUserOut() {
+    const isUserSignedOut = deleteUserLogin();
+    if (!isUserSignedOut) {
+      alert('Signout failed!')
+      return;
+    };
+    redirect("/user/login");
+  }
+
+  const RenderSignInOrOut = () => {
+    return isUserLoggedIn ? (<button onClick={signUserOut} className="h-full outline outline-white p-1">
+      Sign Out
+    </button>
+  ):
+   (<button onClick={redirectLogin} className="h-full outline outline-white p-1">
+      Sign In
+    </button>
+  )
+  }
+
   return (
     <>
       <div className="h-12 w-full p-2 flex justify-between items-center bg-blue-800 text-white">
         <h1>Financial Tracker</h1>
         <div className="h-full">
-          {showLoginButton && (
-            <button onClick={redirectLogin} className="h-full outline outline-white p-1">
-              Sign In
-            </button>
-          )}
+          {showLoginButton && <RenderSignInOrOut />}
           {showRegisterButton && (
             <button onClick={redirectRegistration} className="h-full outline outline-white p-1">
               Sign Up
@@ -36,7 +55,7 @@ export default function Header({
           )}
         </div>
       </div>
-      <div className="h-[calc(100vh-3rem)]">{children}</div>
+      <div className="h-[calc(100vh-3rem)] p-2">{children}</div>
     </>
   );
 }

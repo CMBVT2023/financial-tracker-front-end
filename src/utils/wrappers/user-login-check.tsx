@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import checkUserLogin from "../user-cookies/check-user-login";
 import { redirect, usePathname } from "next/navigation";
-
-import { IsUserLoggedIn } from "../all-context";
 import Header from "@/components/header";
 
 interface LoginCheckProps {
@@ -35,27 +33,21 @@ export default function LoginCheck({ children }: LoginCheckProps) {
 
   if (pageName === "/user/login") {
     return (
-      <IsUserLoggedIn.Provider value={isLoggedIn}>
-        <Header showLoginButton={false} showRegisterButton={true}>
+        <Header showLoginButton={false} showRegisterButton={true} isUserLoggedIn={isLoggedIn}>
           {children}
         </Header>
-      </IsUserLoggedIn.Provider>
     );
   } else if (pageName === "/user/register") {
     return (
-      <IsUserLoggedIn.Provider value={isLoggedIn}>
-        <Header showLoginButton={true} showRegisterButton={false}>
-          {children}
-        </Header>
-      </IsUserLoggedIn.Provider>
+      <Header showLoginButton={true} showRegisterButton={false} isUserLoggedIn={isLoggedIn}>
+        {children}
+      </Header>
     );
   }
 
   return (
-    <IsUserLoggedIn.Provider value={isLoggedIn}>
-      <Header showLoginButton={true} showRegisterButton={true}>
-        {isLoggedIn && children}
-      </Header>
-    </IsUserLoggedIn.Provider>
+    <Header showLoginButton={true} showRegisterButton={true} isUserLoggedIn={isLoggedIn}>
+      {isLoggedIn && children}
+    </Header>
   );
 }
