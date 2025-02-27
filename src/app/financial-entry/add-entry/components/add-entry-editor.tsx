@@ -9,6 +9,7 @@ export default function AddEntryEditor() {
   const itemNameRef = useRef<HTMLInputElement | null>(null);
   const itemCostRef = useRef<HTMLInputElement | null>(null);
   const purchasedFromRef = useRef<HTMLInputElement | null>(null);
+  const entryDateRef = useRef<HTMLInputElement | null>(null);
   const itemQuantityRef = useRef<HTMLInputElement | null>(null);
   const itemManufacturerRef = useRef<HTMLInputElement | null>(null);
 
@@ -19,6 +20,7 @@ export default function AddEntryEditor() {
       itemName: "",
       itemCost: 0,
       purchasedFrom: "",
+      entryDate: "",
       itemQuantity: null,
       itemManufacturer: null,
     };
@@ -28,6 +30,7 @@ export default function AddEntryEditor() {
       itemNameRef,
       itemCostRef,
       purchasedFromRef,
+      entryDateRef,
       itemQuantityRef,
       itemManufacturerRef,
     ]) {
@@ -35,7 +38,12 @@ export default function AddEntryEditor() {
     }
 
     // Constructs the entryInfoObject starting with the required values.
-    for (const ref of [itemNameRef, itemCostRef, purchasedFromRef]) {
+    for (const ref of [
+      itemNameRef,
+      itemCostRef,
+      purchasedFromRef,
+      entryDateRef,
+    ]) {
       if (ref.current?.name !== undefined && ref.current?.value !== undefined) {
         entryObjectInfo[ref.current?.name] = ref.current?.value;
       } else {
@@ -77,6 +85,7 @@ export default function AddEntryEditor() {
       itemName={itemNameRef}
       itemCost={itemCostRef}
       purchasedFrom={purchasedFromRef}
+      entryDate={entryDateRef}
       itemQuantity={itemQuantityRef}
       itemManufacturer={itemManufacturerRef}
       handleFormSubmission={validateEntry}

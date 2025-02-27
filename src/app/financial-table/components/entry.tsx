@@ -7,13 +7,18 @@ interface EntryProps {
 }
 
 export default function Entry({ entryInfoObj, deleteEntry }: EntryProps) {
+  const RenderEntryDate = () => {
+    return <p>{new Date(entryInfoObj.entry_date).toDateString()}</p>
+  }
+
   return (
-    <div key={entryInfoObj.entry_id} className="grid grid-cols-6 text-lg">
+    <div key={entryInfoObj.entry_id} className="grid grid-cols-7 text-lg">
       <p>{entryInfoObj.item_name}</p>
       <p>{entryInfoObj.item_cost}</p>
       <p>{entryInfoObj.purchased_from}</p>
       <p>{entryInfoObj.item_quantity}</p>
       <p>{entryInfoObj.manufacturer}</p>
+      <RenderEntryDate />
       <div className="flex gap-2 w-full text-lg">
         <Link
           className="outline outline-white p-2 w-3/4 text-center"

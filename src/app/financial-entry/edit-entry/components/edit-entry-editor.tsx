@@ -4,7 +4,7 @@ import type {
   FinancialEntryDataBaseInfo,
   FinancialEntryInfo,
 } from "@/utils/types";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import type { FormEvent } from "react";
 import EditEntryForm from "./edt-entry-form";
 
@@ -19,11 +19,13 @@ export default function EditEntryEditor({ entryValues }: EditEntryEditorProps) {
     item_quantity,
     manufacturer,
     purchased_from,
+    entry_date,
     entry_id,
   } = entryValues;
   const [itemName, setItemName] = useState<string>(item_name);
   const [itemCost, setItemCost] = useState<string>(item_cost.toString());
   const [purchasedFrom, setPurchasedFrom] = useState<string>(purchased_from);
+  const [entryDate, setEntryDate] = useState<string>(entry_date.slice(0, 10));
   const [itemQuantity, setItemQuantity] = useState<string>(
     item_quantity.toString()
   );
@@ -31,6 +33,8 @@ export default function EditEntryEditor({ entryValues }: EditEntryEditorProps) {
     useState<string>(manufacturer);
 
   const { mutateAsync: editEntry, error, isSuccess } = useEntryEdit();
+
+  console.log(entry_date)
 
   function checkInputs() {
     let isInputValid = true;
@@ -51,6 +55,7 @@ export default function EditEntryEditor({ entryValues }: EditEntryEditorProps) {
       itemName,
       itemCost: parseInt(itemCost),
       purchasedFrom,
+      entryDate,
       itemQuantity: itemQuantity === "" ? 0 : parseInt(itemQuantity),
       itemManufacturer: itemManufacturer,
     });
@@ -64,6 +69,7 @@ export default function EditEntryEditor({ entryValues }: EditEntryEditorProps) {
         stateValue: purchasedFrom,
         alterState: setPurchasedFrom,
       }}
+      entryDate={{ stateValue: entryDate, alterState: setEntryDate }}
       itemQuantity={{ stateValue: itemQuantity, alterState: setItemQuantity }}
       itemManufacturer={{
         stateValue: itemManufacturer,

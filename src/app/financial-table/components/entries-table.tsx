@@ -42,12 +42,13 @@ export default function EntriesTable() {
 
   return (
     <div>
-      <div className="grid grid-cols-6 text-xl">
+      <div className="grid grid-cols-7 text-xl">
         <h2>Name</h2>
         <h2>Cost</h2>
         <h2>Purchase Location</h2>
         <h2>Quantity</h2>
         <h2>Manufacturer</h2>
+        <h2>Entry Date</h2>
       </div>
       {financialEntries}
     </div>

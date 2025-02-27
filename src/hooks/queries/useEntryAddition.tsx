@@ -23,6 +23,7 @@ export default function useEntryAddition() {
     itemName,
     itemCost,
     purchasedFrom,
+    entryDate,
     itemQuantity,
     itemManufacturer,
   }: FinancialEntryInfo) {
@@ -30,6 +31,7 @@ export default function useEntryAddition() {
       itemName,
       itemCost,
       purchasedFrom,
+      entryDate,
       itemQuantity,
       itemManufacturer,
     };

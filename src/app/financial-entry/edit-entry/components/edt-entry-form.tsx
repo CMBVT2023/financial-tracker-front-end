@@ -10,6 +10,7 @@ interface EditEntryFormProps {
   itemName: StringState;
   itemCost: StringState;
   purchasedFrom: StringState;
+  entryDate: StringState;
   itemQuantity: StringState;
   itemManufacturer: StringState;
   handleFormSubmission: (e: FormEvent<HTMLFormElement>) => void;
@@ -19,6 +20,7 @@ export default function EditEntryForm({
   itemName,
   itemCost,
   purchasedFrom,
+  entryDate,
   itemQuantity,
   itemManufacturer,
   handleFormSubmission,
@@ -42,6 +44,12 @@ export default function EditEntryForm({
         labelText={"Purchased From"}
         alterInput={purchasedFrom.alterState}
         currentInputValue={purchasedFrom.stateValue}
+      />
+      <UserInput
+        inputType="date"
+        labelText={"Entry Date"}
+        alterInput={entryDate.alterState}
+        currentInputValue={entryDate.stateValue}
       />
       <UserInput
         inputType="number"
