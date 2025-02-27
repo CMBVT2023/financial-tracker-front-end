@@ -41,7 +41,7 @@ export default function EntriesTable() {
   );
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <div className="grid grid-cols-7 text-xl">
         <h2>Name</h2>
         <h2>Cost</h2>
@@ -50,6 +50,7 @@ export default function EntriesTable() {
         <h2>Manufacturer</h2>
         <h2>Entry Date</h2>
       </div>
+      <hr />
       {financialEntries}
     </div>
   );

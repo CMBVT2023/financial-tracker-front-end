@@ -8,7 +8,7 @@ export default function AddEntryButton() {
 
   return (
     <button
-      className="outline outline-white p-2 fixed bottom-4 right-4"
+      className="outline outline-white p-2 fixed bottom-4 right-4 bg-blue-800"
       onClick={addNewEntry}
     >
       Add New Entry
