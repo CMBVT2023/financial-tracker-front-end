@@ -68,7 +68,7 @@ export default function Header({
           )}
         </div>
       </div>
-      <div className="h-[calc(100vh-3rem)] p-2">{children}</div>
+      <div className="max-h-[calc(100vh-3rem)] h-[calc(100vh-3rem)] overflow-y-auto p-2">{children}</div>
     </>
   );
 }
