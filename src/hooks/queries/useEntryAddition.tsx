@@ -6,7 +6,7 @@ import {
   postMutationKey,
 } from "@/utils/constant-vars";
 import axios from "axios";
-import type { ServerResponseObj, FinancialEntryInfo } from "@/utils/types";
+import type { FinancialEntryInfo } from "@/utils/types";
 import getUserLogin from "@/utils/user-cookies/get-user-login";
 import { redirect } from "next/navigation";
 

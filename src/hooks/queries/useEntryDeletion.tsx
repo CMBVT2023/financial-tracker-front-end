@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { endPointURL, getQueryKey } from "@/utils/constant-vars";
 import axios from "axios";
-import { ServerResponseObj } from "@/utils/types";
 import getUserLogin from "@/utils/user-cookies/get-user-login";
 
 export default function useEntryDeletion() {

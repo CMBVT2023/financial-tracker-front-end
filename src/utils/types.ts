@@ -18,6 +18,7 @@ export type FinancialEntryInfo = {
   itemName: string;
   itemCost: number;
   purchasedFrom: string;
+  entryDate: string;
   itemQuantity: number | null;
   itemManufacturer: string | null;
   entryID?: number;
@@ -28,6 +29,7 @@ export type FinancialEntryDataBaseInfo = {
   item_name: string;
   item_cost: number;
   purchased_from: string;
+  entry_date: string;
   user_id: number;
   item_quantity: number;
   manufacturer: string;

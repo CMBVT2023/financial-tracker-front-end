@@ -2,7 +2,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { endPointURL } from "@/utils/constant-vars";
 import axios from "axios";
-import { ServerResponseObj } from "@/utils/types";
+import type { ServerResponseObj } from "@/utils/types";
 import storeUserLogin from "@/utils/user-cookies/store-user-login";
 import { redirect } from "next/navigation";
 

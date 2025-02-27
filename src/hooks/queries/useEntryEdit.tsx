@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { endPointURL, getQueryKey } from "@/utils/constant-vars";
 import axios from "axios";
-import type { FinancialEntryInfo, ServerResponseObj } from "@/utils/types";
+import type { FinancialEntryInfo } from "@/utils/types";
 import getUserLogin from "@/utils/user-cookies/get-user-login";
 import { redirect } from "next/navigation";
 
