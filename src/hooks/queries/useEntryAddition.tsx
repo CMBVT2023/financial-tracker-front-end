@@ -50,7 +50,7 @@ export default function useEntryAddition() {
 
   async function invalidateQueries() {
     mainQueryClient.invalidateQueries({ queryKey: [getQueryKey] });
-    redirect("/");
+    redirect("/financial-table");
   }
 
   return { mutateAsync, isSuccess, error };

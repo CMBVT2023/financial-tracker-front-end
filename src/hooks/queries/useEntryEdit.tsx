@@ -47,7 +47,7 @@ export default function useEntryEdit() {
 
   async function invalidateQueries() {
     mainQueryClient.invalidateQueries({ queryKey: [getQueryKey] });
-    redirect("/");
+    redirect("/financial-table");
   }
 
   return { mutateAsync, isSuccess, error };
