@@ -1,4 +1,5 @@
 import deleteUserLogin from "@/utils/user-cookies/delete-user-login";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 interface HeaderProps {
@@ -45,8 +46,8 @@ export default function Header({
   return (
     <>
       <div className="h-12 w-full p-2 flex justify-between items-center bg-blue-800 text-white">
-        <h1>Financial Tracker</h1>
-        <div className="h-full">
+        <Link href={{pathname: "/"}} className="text-xl">Financial Tracker</Link>
+        <div className="h-full flex gap-2">
           {showLoginButton && <RenderSignInOrOut />}
           {showRegisterButton && (
             <button onClick={redirectRegistration} className="h-full outline outline-white p-1">
